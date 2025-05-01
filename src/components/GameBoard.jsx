@@ -6,7 +6,7 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-function GameBoard() {
+function GameBoard({ onSelectSquare, activePlayerSymbol }) {
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
   const handleCellClick = (rowIndex, colIndex) => {
@@ -14,10 +14,11 @@ function GameBoard() {
       const updatedGameBoard = [
         ...prevGameBoard.map((innerArray) => [...innerArray]),
       ];
-      updatedGameBoard[rowIndex][colIndex] = "x";
+      updatedGameBoard[rowIndex][colIndex] = activePlayerSymbol;
 
       return updatedGameBoard;
     });
+    onSelectSquare();
   };
 
   return (
