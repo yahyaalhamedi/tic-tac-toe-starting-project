@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { useState } from 'react'
 
 function Player({ initialName, symbol, isActive }) {
-  const [playerName, setPlayerName] = useState(initialName);
-  const [isEditing, setIsEditing] = useState(false);
+  const [playerName, setPlayerName] = useState(initialName)
+  const [isEditing, setIsEditing] = useState(false)
 
   const handleEditClick = () => {
-    setIsEditing((prev) => !prev);
-  };
+    setIsEditing((prev) => !prev)
+  }
 
   const handleNameChange = (event) => {
-    setPlayerName(event.target.value);
-  };
+    setPlayerName(event.target.value)
+  }
 
   return (
-    <li className={isActive ? "active" : undefined}>
+    <li className={isActive ? 'active' : undefined}>
       <span className="player">
         {isEditing ? (
           <input
@@ -27,11 +27,14 @@ function Player({ initialName, symbol, isActive }) {
         )}
         <span className="player-symbol">{symbol}</span>
       </span>
-      <button className="player-button" onClick={handleEditClick}>
-        {isEditing ? "Save" : "Edit"}
+      <button
+        className="player-button"
+        onClick={handleEditClick}
+      >
+        {isEditing ? 'Save' : 'Edit'}
       </button>
     </li>
-  );
+  )
 }
 
-export default Player;
+export default Player
