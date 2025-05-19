@@ -20,7 +20,7 @@ function App() {
 
   const activePlater = deriveActivePlayer(gameTurns)
 
-  let gameBoard = initialGameBoard
+  let gameBoard = [...initialGameBoard.map((array) => [...array])]
 
   for (const turn of gameTurns) {
     const { square, player } = turn
@@ -64,6 +64,10 @@ function App() {
     })
   }
 
+  const handleRestart = () => {
+    setGameTurns([])
+  }
+
   return (
     <>
       <h1>React Tic-Tac-Toe</h1>
@@ -84,7 +88,12 @@ function App() {
               isActive={activePlater === 'O'}
             />
           </ol>
-          {(winner || hasDraw) && <GameOver winner={winner} />}
+          {(winner || hasDraw) && (
+            <GameOver
+              winner={winner}
+              onRestart={handleRestart}
+            />
+          )}
           <GameBoard
             onSelectSquare={handleSelectSquare}
             gameBoard={gameBoard}
