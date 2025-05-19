@@ -81,7 +81,10 @@ function App() {
 
   return (
     <>
-      <h1>React Tic-Tac-Toe</h1>
+      <header id="header">
+        <img src="/game-logo.png" />
+        <h1>React Tic-Tac-Toe</h1>
+      </header>
       <main>
         <div id="game-container">
           <ol
