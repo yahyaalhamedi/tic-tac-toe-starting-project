@@ -17,6 +17,10 @@ function deriveActivePlayer(gameTurns) {
 
 function App() {
   const [gameTurns, setGameTurns] = useState([])
+  const [players, setPlayers] = useState({
+    X: 'Player 1',
+    O: 'Player 2',
+  })
 
   const activePlater = deriveActivePlayer(gameTurns)
 
@@ -39,7 +43,7 @@ function App() {
       firstSquareSymbol === secondSquareSymbol &&
       firstSquareSymbol === thridSquareSymbol
     ) {
-      winner = firstSquareSymbol
+      winner = players[firstSquareSymbol]
     }
   }
 
@@ -68,6 +72,13 @@ function App() {
     setGameTurns([])
   }
 
+  const handlePlayerNameChange = (player, newName) => {
+    setPlayers((prevPlayers) => ({
+      ...prevPlayers,
+      [player]: newName,
+    }))
+  }
+
   return (
     <>
       <h1>React Tic-Tac-Toe</h1>
@@ -81,11 +92,13 @@ function App() {
               initialName="Player 1"
               symbol="X"
               isActive={activePlater === 'X'}
+              onNameChange={handlePlayerNameChange}
             />
             <Player
               initialName="Player 2"
               symbol="O"
               isActive={activePlater === 'O'}
+              onNameChange={handlePlayerNameChange}
             />
           </ol>
           {(winner || hasDraw) && (
