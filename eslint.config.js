@@ -16,5 +16,10 @@ export default defineConfig([
       'react/jsx-uses-react': 'off',
       'react/jsx-uses-vars': 'error',
     },
+    settings: {
+      react: {
+        version: 'detect', // Auto-detect React version
+      },
+    },
   },
 ])

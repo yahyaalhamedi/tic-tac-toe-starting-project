@@ -1,7 +1,17 @@
 import { useState } from 'react'
+import { SymbolType } from '../types'
 
-function Player({ initialName, symbol, isActive, onNameChange }) {
-  const [playerName, setPlayerName] = useState(initialName)
+interface PlayerPropsType {
+  initialName: string
+  symbol: SymbolType
+  isActive: boolean
+  onNameChange: (symbol: SymbolType, player: string) => void
+}
+
+const Player = (props: PlayerPropsType) => {
+  const { initialName, symbol, isActive, onNameChange } = props
+
+  const [playerName, setPlayerName] = useState<string>(initialName)
   const [isEditing, setIsEditing] = useState(false)
 
   const handleEditClick = () => {
@@ -11,7 +21,7 @@ function Player({ initialName, symbol, isActive, onNameChange }) {
     }
   }
 
-  const handleNameChange = (event) => {
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerName(event.target.value)
   }
 

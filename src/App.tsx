@@ -4,9 +4,10 @@ import { useState } from 'react'
 import Log from './components/Log'
 import GameOver from './components/GameOver'
 import { PLAYERS, deriveActivePlayer, deriveGameBoard, deriveWinner } from './helper'
+import { GameTurnType, SymbolType } from './types'
 
-function App() {
-  const [gameTurns, setGameTurns] = useState([])
+const App = () => {
+  const [gameTurns, setGameTurns] = useState<GameTurnType[]>([])
   const [players, setPlayers] = useState(PLAYERS)
 
   const activePlayer = deriveActivePlayer(gameTurns)
@@ -15,7 +16,7 @@ function App() {
 
   const hasDraw = gameTurns.length === 9 && !winner
 
-  const handleSelectSquare = (rowIndex, colIndex) => {
+  const handleSelectSquare = (rowIndex: number, colIndex: number) => {
     setGameTurns((prevTurens) => {
       const currentPlayer = deriveActivePlayer(prevTurens)
 
@@ -38,7 +39,7 @@ function App() {
     setGameTurns([])
   }
 
-  const handlePlayerNameChange = (player, newName) => {
+  const handlePlayerNameChange = (player: SymbolType, newName: string) => {
     setPlayers((prevPlayers) => ({
       ...prevPlayers,
       [player]: newName,

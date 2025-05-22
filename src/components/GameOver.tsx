@@ -1,4 +1,11 @@
-function GameOver({ winner, onRestart }) {
+interface GameOverPropsType {
+  winner: string | null
+  onRestart: () => void
+}
+
+const GameOver = (props: GameOverPropsType) => {
+  const { winner, onRestart } = props
+
   return (
     <div id="game-over">
       <h2>Game Over!</h2>

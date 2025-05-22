@@ -1,4 +1,12 @@
-function Log({ gameTurns }) {
+import { GameTurnType } from '../types'
+
+interface LogPropsType {
+  gameTurns: GameTurnType[]
+}
+
+const Log = (props: LogPropsType) => {
+  const { gameTurns } = props
+
   return (
     <ol id="log">
       {gameTurns.map((turn, index) => (

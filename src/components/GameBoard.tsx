@@ -1,4 +1,13 @@
-function GameBoard({ onSelectSquare, gameBoard }) {
+import { InitialGameBoardType } from '../types'
+
+interface GameBoardPropsType {
+  onSelectSquare: (rowIndex: number, colIndex: number) => void
+  gameBoard: InitialGameBoardType
+}
+
+const GameBoard = (props: GameBoardPropsType) => {
+  const { onSelectSquare, gameBoard } = props
+
   return (
     <ol id="game-board">
       {gameBoard.map((row, rowIndex) => (

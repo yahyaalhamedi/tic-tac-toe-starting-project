@@ -1,15 +1,23 @@
+import {
+  GameTurnType,
+  InitialGameBoardType,
+  PlayerType,
+  SymbolType,
+  WinningCombinationsType,
+} from './types'
+
 export const PLAYERS = {
   X: 'Player 1',
   O: 'Player 2',
 }
 
-export const INITIAL_GAME_BOARD = [
+export const INITIAL_GAME_BOARD: InitialGameBoardType = [
   [null, null, null],
   [null, null, null],
   [null, null, null],
 ]
 
-export const WINNING_COMBINATIONS = [
+export const WINNING_COMBINATIONS: WinningCombinationsType = [
   [
     { row: 0, column: 0 },
     { row: 0, column: 1 },
@@ -52,12 +60,12 @@ export const WINNING_COMBINATIONS = [
   ],
 ]
 
-export function deriveActivePlayer(gameTurns) {
+export const deriveActivePlayer = (gameTurns: GameTurnType[]) => {
   // If number of turns is even, it's X's turn, otherwise O's turn
   return gameTurns.length % 2 === 0 ? 'X' : 'O'
 }
 
-export function deriveGameBoard(gameTurns) {
+export const deriveGameBoard = (gameTurns: GameTurnType[]) => {
   const gameBoard = [...INITIAL_GAME_BOARD.map((array) => [...array])]
 
   for (const turn of gameTurns) {
@@ -68,9 +76,11 @@ export function deriveGameBoard(gameTurns) {
   return gameBoard
 }
 
-export function deriveWinner(gameBoard, players) {
+export const deriveWinner = (gameBoard: InitialGameBoardType, players: PlayerType) => {
   for (const combination of WINNING_COMBINATIONS) {
-    const firstSquareSymbol = gameBoard[combination[0].row][combination[0].column]
+    const firstSquareSymbol = gameBoard[combination[0].row][
+      combination[0].column
+    ] as keyof SymbolType
     const secondSquareSymbol = gameBoard[combination[1].row][combination[1].column]
     const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].column]
 
@@ -79,7 +89,7 @@ export function deriveWinner(gameBoard, players) {
       firstSquareSymbol === secondSquareSymbol &&
       firstSquareSymbol === thirdSquareSymbol
     ) {
-      return players[firstSquareSymbol]
+      return players[firstSquareSymbol as keyof PlayerType]
     }
   }
   return null
